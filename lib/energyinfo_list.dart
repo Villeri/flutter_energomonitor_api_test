@@ -73,7 +73,7 @@ class _EnergyInfoState extends State<EnergyInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Energy Info"),
+        title: Text("Energy Info, ${dataList.length}"),
       ),
       body: Center(
         child: ListView.builder(

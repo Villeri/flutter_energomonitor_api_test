@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_energomonitor_api_test/energyinfo_graph.dart';
 import 'package:flutter_energomonitor_api_test/userinfo.dart';
 
-import 'energyinfo.dart';
+import 'energyinfo_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,7 +53,16 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const EnergyInfo()));
             },
-            child: const Text("View energy info"),
+            child: const Text("View energy info list"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const EnergyInfoGraph()));
+            },
+            child: const Text("View energy info graph"),
           ),
         ],
       )),
