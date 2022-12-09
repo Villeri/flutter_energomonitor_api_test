@@ -20,8 +20,8 @@ class _EnergyInfoGraphState extends State<EnergyInfoGraph> {
 
   @override
   void initState() {
-    super.initState();
     getData();
+    super.initState();
   }
 
   getData() async {
@@ -35,7 +35,9 @@ class _EnergyInfoGraphState extends State<EnergyInfoGraph> {
     );
     final responseJson = jsonDecode(response.body);
     for (var i = 0; i < responseJson.length; i++) {
-      dataList.add(_EnergyData(responseJson[i][0], responseJson[i][1]));
+      setState(() {
+        dataList.add(_EnergyData(responseJson[i][0], responseJson[i][1]));
+      });
       print("timestamp: ${responseJson[i][0]} energy: ${responseJson[i][1]}");
     }
   }
@@ -55,8 +57,8 @@ class _EnergyInfoGraphState extends State<EnergyInfoGraph> {
                 xValueMapper: (_EnergyData energy, _) =>
                     energy.timestamp.toString(),
                 yValueMapper: (_EnergyData energy, _) => energy.energyvalue,
-                name: "Spent energy",
-                dataLabelSettings: DataLabelSettings(isVisible: true),
+                name: "Spent energy (Wh)",
+                dataLabelSettings: const DataLabelSettings(isVisible: true),
               ),
             ],
           ),
@@ -64,9 +66,9 @@ class _EnergyInfoGraphState extends State<EnergyInfoGraph> {
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: SfSparkLineChart.custom(
-                trackball: SparkChartTrackball(
+                trackball: const SparkChartTrackball(
                     activationMode: SparkChartActivationMode.tap),
-                marker: SparkChartMarker(
+                marker: const SparkChartMarker(
                   displayMode: SparkChartMarkerDisplayMode.all,
                 ),
                 labelDisplayMode: SparkChartLabelDisplayMode.all,
@@ -79,7 +81,9 @@ class _EnergyInfoGraphState extends State<EnergyInfoGraph> {
         ],
       );
     }
-    return Text("No values found. DataList length is ${dataList.length}");
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
   }
 
   @override

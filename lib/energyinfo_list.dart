@@ -64,7 +64,9 @@ class _EnergyInfoState extends State<EnergyInfo> {
     );
     final responseJson = jsonDecode(response.body);
     for (var i = 0; i < responseJson.length; i++) {
-      dataList.add(responseJson[i]);
+      setState(() {
+        dataList.add(responseJson[i]);
+      });
       print("timestamp: ${responseJson[i][0]} energy: ${responseJson[i][1]}");
     }
   }
@@ -73,7 +75,7 @@ class _EnergyInfoState extends State<EnergyInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Energy Info, ${dataList.length}"),
+        title: const Text("Energy Info List"),
       ),
       body: Center(
         child: ListView.builder(
@@ -87,7 +89,7 @@ class _EnergyInfoState extends State<EnergyInfo> {
                   children: [
                     Text(
                         "TIME: ${DateTime.fromMillisecondsSinceEpoch(dataList[index][0] * 1000)}"),
-                    Text("ENERGY VALUE: ${dataList[index][1]}"),
+                    Text("ENERGY VALUE: ${dataList[index][1]} (Wh)"),
                   ],
                 ),
               ),
