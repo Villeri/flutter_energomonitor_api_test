@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
 
 Future<UserData> fetchUserData() async {
-  String token = "jOiuBqByBepxsxBB3TqLolHFSBlgC7";
+  String token = "m4j7t8FWbI46ofuZ66XGTNGOJD9yLC";
   final response = await http.get(
     Uri.parse("https://api.energomonitor.com/v1/users/ustrx"),
     headers: {

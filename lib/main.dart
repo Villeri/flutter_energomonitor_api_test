@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_energomonitor_api_test/energyinfo_graph.dart';
+import 'package:flutter_energomonitor_api_test/last10mins_energyprices/last10mins_energyprices.dart';
+import 'package:flutter_energomonitor_api_test/last10mins_energyvalues/last10mins_energyvalues.dart';
 import 'package:flutter_energomonitor_api_test/userinfo.dart';
-
-import 'energyinfo_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +27,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String accessToken = "m4j7t8FWbI46ofuZ66XGTNGOJD9yLC";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,19 +50,25 @@ class _HomeScreenState extends State<HomeScreen> {
           const Text("Energomonitor api test"),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const EnergyInfo()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Last10MinsEnergyValues(
+                            accessToken: accessToken,
+                          )));
             },
-            child: const Text("View energy info list"),
+            child: const Text("Last 10mins energy values"),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const EnergyInfoGraph()));
+                      builder: (context) => Last10MinsEnergyPrices(
+                            accessToken: accessToken,
+                          )));
             },
-            child: const Text("View energy info graph"),
+            child: const Text("Last 10mins energy prices"),
           ),
         ],
       )),
